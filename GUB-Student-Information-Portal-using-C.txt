@@ -1,0 +1,232 @@
+1.#include <math.h>
+2. #include <stdio.h>
+3. #include <stdlib.h>
+4. #include <string.h>
+5.
+6. int i = 0;
+7.
+8. struct sinfo {
+9. char fname[20];
+10. char lname[20];
+11. int roll;
+12. float cgpa;
+13. int courseID[10];
+14. } arr[55];
+15.
+16. // Function to add the student
+17. //--------------------------------
+18. void Add_New_Students()
+19. {
+20.
+21. printf("Add New Students Details\n");
+22. printf("-------------------------\n");
+23. printf("Enter the first name of student\n");
+24. scanf("%s", arr[i].fname);
+25. printf("Enter the last name of student\n");
+26. scanf("%s", arr[i].lname);
+27. printf("Enter the Roll Number\n");
+28. scanf("%d", &arr[i].roll);
+29. printf("Enter the CGPA you obtained\n");
+30. scanf("%f", &arr[i].cgpa);
+31. printf("Enter the course ID of each course\n");
+32. for (int j = 0; j < 3; j++) {
+33. scanf("%d", &arr[i].courseID[j]);
+34. }
+35. i = i + 1;
+36. }
+37.
+38. // Function to find the student by the roll number
+39. //------------------------------------------
+40. void Find_by_Roll()
+41. {
+42. int x;
+43. printf("Enter the Roll Number of the student\n");
+44. scanf("%d", &x);
+45. for (int j = 1; j <= i; j++) {
+46. if (x == arr[i].roll) {
+47. printf("The Students Details are\n");
+48. printf("The First name is %s\n",arr[i].fname);
+49. printf("The Last name is %s\n",arr[i].lname);
+50. printf("The CGPA is %f\n",arr[i].cgpa);
+51. printf("Enter the course ID of each course\n");
+52. }
+53. for (int j = 0; j < 3; j++) {
+54. printf("The course ID are %d\n",arr[i].courseID[j]);
+55. }
+56. break;
+57. }
+58. }
+59.
+60. // Function to find the student by the first name
+61. //---------------------------------------------
+62. void Find_by_First_Name()
+63. {
+64. char a[50];
+65. printf("Enter the First Name of the student\n");
+66. scanf("%s", a);
+67. int c = 0;
+68.
+69. for (int j = 1; j <= i; j++) {
+70. if (!strcmp(arr[j].fname, a)) {
+71.
+72. printf("The Students Details are\n");
+73. printf("The First name is %s\n",arr[i].fname);
+74. printf("The Last name is %s\n",arr[i].lname);
+75. printf("The Roll Number is %d\n ",arr[i].roll);
+76. printf("The CGPA is %f\n",arr[i].cgpa);
+77. printf("Enter the course ID of each course\n");
+78.
+79. for (int j = 0; j < 3; j++) {
+80. printf("The course ID are %d\n",arr[i].courseID[j]);
+81. }
+82. c = 1;
+83. }
+84. else
+85. printf("The First Name not Found\n");
+86. }
+87. }
+88. // Function to find the student by CGPA
+89. //-------------------------------------
+90. void Find_by_CGPA()
+91. {
+92. int id;
+93. printf("Enter the course ID \n");
+94. scanf("%d", &id);
+95. int c = 0;
+96.
+97. for (int j = 1; j <= i; j++) {
+98. for (int d = 0; d < 5; d++) {
+99. if (id == arr[j].courseID[d]) {
+100.
+101. printf("The Students Details are\n");
+102. printf("The First name is %s\n",arr[i].fname);
+103. printf("The Last name is %s\n",arr[i].lname);
+104. printf("The Roll Number is %d\n ",arr[i].roll);
+105. printf("The CGPA is %f\n",arr[i].cgpa);
+106.
+107. c = 1;
+108.
+109. break;
+110. }
+111. else
+112. printf("The First Name not Found\n");
+113. }
+114. }
+115. }
+116.
+117. // Function to print the total number of students
+118. //------------------------------------------
+119. void Total_Students()
+120. {
+121. printf("The total number of Student is %d\n",i);
+122. printf("\n you can have a max of 50 students\n");
+123. printf("you can have %d more students\n",50 - i);
+124. }
+125.
+126. // Function to delete a student by the roll number
+127. //----------------------------------------------
+128. void Delete_Information_of_a_Student()
+129. {
+130. int a;
+131. printf("Enter the Roll Number which you want to delete\n");
+132. scanf("%d", &a);
+133. for (int j = 1; j <= i; j++) {
+134. if (a == arr[j].roll) {
+135. for (int k = j; k < 49; k++)
+136. arr[k] = arr[k + 1];
+137. i--;
+138. }
+139. }
+140. printf("The Roll Number is removed Successfully\n");
+141. }
+142.
+143. // Function to update a students data
+144. //---------------------------------------
+145. void Update_Student_Information()
+146. {
+147.
+148. printf("Enter the roll number to update the entry : ");
+149. long int x;
+150. scanf("%ld", &x);
+151. for (int j = 0; j < i; j++) {
+152. if (arr[j].roll == x) {
+153. printf("1. First name\n 2. Last name\n 3. Roll no.\n 4. CGPA\n 5. Courses\n");
+154. int SS;
+155. scanf("%d", &SS);
+156. switch (SS) {
+157. case 1:
+158. printf("Enter the new first name : \n");
+159. scanf("%s", arr[j].fname);
+160. break;
+161. case 2:
+162. printf("Enter the new last name : \n");
+163. scanf("%s", arr[j].lname);
+164. break;
+165. case 3:
+166. printf("Enter the new roll number : \n");
+167. scanf("%d", &arr[j].roll);
+168. break;
+169. case 4:
+170. printf("Enter the new CGPA : \n");
+171. scanf("%f", &arr[j].cgpa);
+172. break;
+173. case 5:
+174. printf("Enter the new courses \n");
+175. scanf("%d%d%d", &arr[j].courseID[0],&arr[j].courseID[1], &arr[j].courseID[2]);
+176. break;
+177. }
+178. printf("UPDATED SUCCESSFULLY\n");
+179. }
+180. }
+181. }
+182.
+183. //-------------------------------------
+184. void main()
+185.
+186. {
+187. int choice, count;
+188. while (i = 1) {
+189. printf("*****************************************************\n");
+190. printf("*****Green University of Bangladesh Portal(Demo)*****\n");
+191. printf("*****************************************************\n");
+192.
+193. printf("1. Add the Student Details\n");
+194. printf("2. Find the Student Details by Roll Number\n");
+195. printf("3. Find the Student Details by First Name\n");
+196. printf("4. Find the Student Details by Course Id\n");
+197. printf("5. Find the Total number of Students\n");
+198. printf("6. Delete the Students Details by Roll Number\n");
+199. printf("7. Update the Students Details by Roll Number\n");
+200. printf("8. To Exit\n");
+201. printf("Enter your choice:");
+202. scanf("%d", &choice);
+203. switch (choice) {
+204. case 1:
+205. Add_New_Students();
+206. break;
+207. case 2:
+208. Find_by_Roll();
+209. break;
+210. case 3:
+211. Find_by_First_Name();
+212. break;
+213. case 4:
+214. Find_by_CGPA();
+215. break;
+216. case 5:
+217. Total_Students();
+218. break;
+219. case 6:
+220. Delete_Information_of_a_Student();
+221. break;
+222. case 7:
+223. Update_Student_Information();
+224. break;
+225. case 8:
+226. exit(0);
+227. break;
+228. }
+229. }
+230. }
+231.
+
